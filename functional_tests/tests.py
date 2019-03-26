@@ -1,4 +1,5 @@
 ''' This File has been created to Test Django Installation at first '''
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -6,7 +7,7 @@ import unittest
 # https://stackoverflow.com/questions/42478591/python-selenium-chrome-webdriver #
 # Reference
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path='./utils/chromedriver') # Using Chrome browser instead
 
@@ -23,7 +24,8 @@ class NewVisitorTest(unittest.TestCase):
         # Paul has heard about a cool ne online to-do app. He goes
         # to chec out its homepage
 
-        self.browser.get('http://localhost:8000')
+        # LiveServer gives an attribute to get rid the http://localhost
+        self.browser.get(self.live_server_url)
 
         # He notices the page title and header mention to-do lists
         # This is to check if the basic django server is upexit
@@ -68,7 +70,3 @@ class NewVisitorTest(unittest.TestCase):
         # Satisfied, she goes back to sleep
 
         self.fail('Finish the test!')
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore') # Launches the unittest test runner, which will automatically find test classes and methods
