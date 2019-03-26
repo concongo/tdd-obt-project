@@ -43,7 +43,7 @@ class NewVisitorTest(unittest.TestCase):
 
         self.assertTrue(
             any(row.text == '1: Buy peacok feathers' for row in rows),
-            "New to-do item did not appear in table"
+            f"New to-do item did not appear in table. Contents were:\n{table.text}"
         )
         # There is still a text box inviting her to add another item. She enters 
         # "Use peacock feathers to make a fly"
